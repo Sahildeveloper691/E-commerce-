@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <style>
+        nav span{
+            margin-left: 20px;
+        }
+        nav{
+            margin-top: 10px;
+        }
+        #loginSection span{
+            margin-left: 20px;
+        }
+        #login:hover{
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        nav:hover{
+            cursor: pointer;
+        }
+        #Search-icon:hover,.bi-heart:hover,.bi-bag:hover{
+            font-weight: bold;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .col-3{
+            margin-left: -10px;
+        }
+        #ShopNow:hover{
+            cursor: pointer;
+        }
+        main{
+            margin-top: 50px;
+            margin-left: 150px;
+            margin-right: 150px;
+        }
+        #mainProductTitle{
+            display: flex;
+            justify-content: space-between;
+        }
+        #fashionList li{
+            margin-right: 40px;
+            cursor: pointer;
+        }
+        .Ashion-pro-g1 {
+            background-image: url("../public/images/Ashion-pro-g1.jpg");
+            background-size: cover;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            overflow: hidden;
+            transition-duration: 500ms;
+        }
+        .icons span{
+            background-color: white;
+            border-radius: 20px;
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .icons{
+            transform: translateY(50px);
+        }
+        .Ashion-pro-g1:hover .icons{
+            transform: translateY(-50px);
+            transition-duration: 500ms;
+        }
+        .Ashion-pro-b1{
+            background-image: url("../public/images/Ashion-pro-b1.jpg");
+            background-size: cover;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            overflow: hidden;
+            transition-duration: 500ms;
+        }
+        .Ashion-pro-b1:hover .icons{
+            transform: translateY(-50px);
+            transition-duration: 500ms;
+        }
+        #carousel-banner{
+            background-image: url("../public/images/Ashion-banner.webp");
+            margin-top: 40px;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+            text-align: center;
+        }
+        .carousel{
+            position: absolute;
+            left: 50vh;
+            bottom: 20vh;
+            top: 10vh;
+            right: 40vh;
+        }
+        .carousel-item{
+            padding-left: 110px;
+            padding-right: 110px;
+            padding-bottom: 80px;
+            padding-top: 80px;
+        }
+        #trendings{
+            font-size: 26px;
+            font-weight: bolder;
+            border-bottom: 2px solid red;
+            margin-bottom: 30px;
+        }
+        .insta-text{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(251, 251, 251, 0.747);
+            display: none;
+        }
+        .insta-img:hover .insta-text{
+            display: flex;
+        }
+        .bi-facebook{
+            cursor: pointer;
+            border-radius: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #e1e1e1;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .bi-twitter{
+            cursor: pointer;
+            border-radius: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #e1e1e1;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .bi-youtube{
+            cursor: pointer;
+            border-radius: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #e1e1e1;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        #InstaId{
+            cursor: pointer;
+            border-radius: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #e1e1e1;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .bi-pinterest{
+            cursor: pointer;
+            border-radius: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #e1e1e1;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+     </style>
+    <script>
+        function SearchBar()
+        {
+            document.getElementById("mainHead").style.display="none";
+            document.getElementById("SearchOption").style.display="flex";
+            document.getElementById("SearchOption").style.justifyContent="space-evenly";
+        }
+        function CloseSearch()
+        {
+            document.getElementById("mainHead").style.display="flex";
+            document.getElementById("SearchOption").style.display="none";
+        }
+        function ListKids()
+        {
+            document.getElementById("all").style.display="none";
+            document.getElementById("kids").style.display="flex";
+            document.getElementById("FashionKids").style.borderBottomColor="red";
+            document.getElementById("wom").style.display="none";
+        }
+        function ListAll()
+        {
+            document.getElementById("kids").style.display="none";
+            document.getElementById("all").style.display="flex";
+            document.getElementById("FashionAll").style.borderBottomColor="red";
+            document.getElementById("wom").style.display="none";
+        }
+        function ListWom()
+        {
+            document.getElementById("kids").style.display="none";
+            document.getElementById("all").style.display="none";
+            document.getElementById("wom").style.display="flex";
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <header class="my-3" style="border-bottom: 0.2px solid white;box-shadow: 0px 2px 2px rgb(150, 149, 149);padding: 5px;">
+        <div style="display: flex;flex-direction: row;justify-content: space-between;" id="mainHead">
+            <div id="brandTitle" style="font-family: Brush Script MT, Brush Script Std, cursive;font-size: 30px;font-weight: bold;">Ashion</div>
+            <nav>
+                <span>HOME</span>
+                <span>WOMENS</span>
+                <span>MEN'S</span>
+                <span>SHOP</span>
+                <span>PAGES</span>
+                <span>BLOG</span>
+                <span>CONTACT</span>    
+            </nav>
+            <div id="loginSection" style="margin-top: 10px;">
+                <span style="font-size: 11px;" id="login"><a href="../Personal Projects/Ashion-form.html" style="color: unset;">LOGIN / REGISTER</a></span>
+                <span class="bi bi-search" style="font-size: 20px;" onclick="SearchBar()" id="Search-icon"></span>
+                <span class="bi bi-heart" style="font-size: 20px;"></span>
+                <span class="bi bi-bag" style="margin-right: 20px; font-size: 20px;"></span>
+            </div>
+        </div>
+        <div style="display: none;" id="SearchOption">
+            <div>
+                <input type="text" placeholder="Search Products" size="60" style="border-top-left-radius: 10px;border-bottom-left-radius: 10px;padding: 4px;">
+                <button class="bi bi-search" style="margin-left: -5px;padding-left: 10px;padding-right: 8px;padding-top: 4px;padding-bottom: 4px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;background-color: blue;"></button>
+            </div>
+            <div>
+                <span class="bi bi-x" onclick="CloseSearch()" style="cursor: pointer;font-size: 20px;"></span>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div id="mainImageTitle" class="row">
+            <div class="col-6">
+                <img src="../public/images/category-1.jpg" width="100%" height="600">
+                <span style="position: absolute; top: 40vh; left: 8vh;font-size: 52px;font-family: Brush Script MT;">Women's Fashion</span>
+                <span style="position: absolute;top: 50vh;left: 8vh;">Sitamet, consectetur adipiscing elit, sed do eiusmod tempor in</span>
+                <span style="position: absolute;top: 53vh;left: 8vh;">unt labore edolore magna aliquapendisse ultrices gravida.</span>
+                <span style="font-size: 18px;position: absolute;top: 60vh;left: 8vh;font-family: 'Times New Roman', Times, serif;border-bottom: 3px solid rgb(107, 2, 2);" id="ShopNow">SHOP NOW</span>
+            </div>
+            <div class="col-3">
+                <span><img src="../public/images/category-2.jpg" width="100%" height="290" style="margin-bottom: 20px;">
+                <span style="position: absolute;top: 20vh;left: 108vh;font-size: 28px;font-weight: bolder;">Men's fashion</span>
+                <span style="position: absolute;left: 108vh;top: 25vh;color: rgb(77, 75, 75);">358 items</span>
+                <span style="font-size: 18px;position: absolute;top: 32vh;left: 108vh;font-family: 'Times New Roman', Times, serif;border-bottom: 3px solid rgb(107, 2, 2);" id="ShopNow">SHOP NOW</span>
+                </span>
+                <span><img src="../public/images/category-3.jpg" width="100%" height="300" style="margin-top: -10px;">
+                    <span style="position: absolute;top: 62vh;left: 108vh;font-weight: bolder;font-size: 28px;">Kid’s fashion</span>
+                    <span style="position: absolute;top: 67vh;left: 108vh;">159 items</span>
+                    <span style="font-size: 18px;position: absolute;top: 74vh;left: 108vh;font-family: 'Times New Roman', Times, serif;border-bottom: 3px solid rgb(107, 2, 2);" id="ShopNow">SHOP NOW</span>
+                </span>
+            </div>
+            <div class="col-3">
+                <span><img src="../public/images/women-makeup.jpg" width="100%" height="290" style="margin-bottom: 20px">
+                    <span style="position: absolute;top: 20vh;right: 30vh;font-size: 28px;font-weight: bolder;">Cosmetics</span>
+                    <span style="position: absolute;top: 25vh;right: 38vh;">273 items</span>
+                    <span style="font-size: 18px;position: absolute;top: 32vh;right: 35vh;font-family: 'Times New Roman', Times, serif;border-bottom: 3px solid rgb(107, 2, 2);" id="ShopNow">SHOP NOW</span>
+                </span>
+                <span><img src="../public/images/women-accessories.jpg" width="100%" height="300" style="margin-top: -10px;">
+                    <span style="position: absolute;top: 62vh;right: 28vh;font-size: 28px;font-weight: bolder;">Accessories</span>
+                    <span style="position: absolute;top: 67vh;right: 38vh;">792 items</span>
+                    <span style="font-size: 18px;position: absolute;top: 74vh;right: 35vh;font-family: 'Times New Roman', Times, serif;border-bottom: 3px solid rgb(107, 2, 2);" id="ShopNow">SHOP NOW</span>
+                </span>
+            </div>
+        </div>
+        <main>
+            <div id="mainProductTitle">
+                <span style="font-size: 28px;border-bottom: 2px solid rgb(107, 2, 2);">NEW PRODUCT</span>
+                <ul id="fashionList" style="display: flex;list-style: none;margin-top: 20px;">
+                    <li><span onclick="ListAll()" id="FashionAll">All</span></li>
+                    <li><span onclick="ListWom()">Women's</li>
+                    <li>Men's</li>
+                    <li><span onclick="ListKids()" id="FashionKids">Kids</span></li>
+                    <li>Accessories</li>
+                    <li>Cosmetics</li>
+                </ul>
+            </div>
+            <div style="margin-top: 30px;display: flex;flex-direction: column;" id="all">
+                <div class="d-flex">
+                    <div class="card" style="border: none;width: 325px;">
+                        <div class="card-body">
+                                <div class="Ashion-pro-g1">
+                                    <div class="icons">
+                                    <span class="bi bi-arrows-angle-expand"></span>
+                                    <span class="bi bi-heart"></span>
+                                    <span class="bi bi-bag"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Buttons Tweed Blazer</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 325px;">
+                        <div class="card-body">
+                            <div class="Ashion-pro-b1">
+                                <div class="icons">
+                                    <span class="bi bi-arrows-angle-expand"></span>
+                                    <span class="bi bi-heart"></span>
+                                    <span class="bi bi-bag"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Flowy Striped Skirt</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$49.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 325px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g2.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Cotton T-Shirt</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 325px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-b2.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Slim Stripped Pocket Shirt</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 30px;display: none;" id="kids">
+                <div class="d-flex">
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-b3.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Fit Micro Corduroy Shirt</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g3.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Tropical Kimono</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g4.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-b4.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 30px;display: none;" id="wom">
+                <div class="d-flex">
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g5.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g1.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g3.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                    <div class="card" style="border: none;width: 300px;">
+                        <div class="card-body">
+                            <img src="../public/images/Ashion-pro-g2.jpg" width="100%" height="400">
+                        </div>
+                        <div class="card-footer" style="border: none;background-color: unset;">
+                            <span class="d-block" style="text-align: center;">Contrasting Sunglasses</span>
+                            <span class="d-block" style="font-size: 10px;color: gold;text-align: center;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                            <span style="text-align: center;font-size: 16px;font-weight: bold;display: block;">$59.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div id="carousel-banner">
+            <div class="carousel slide" data-bs-ride="carousel" id="banner">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <div id="car-item-1">
+                            <div style="font-size: 22px;color: red;margin-bottom: 10px;">THE CHLOE COLLECTION</div>
+                            <div style="font-family: cursive;font-size: 28px;">The Project Jacket</div>
+                            <div style="margin-top: 40px;"><span style="border-bottom: 2px solid red;font-weight: bold;font-size: 14px;">SHOP NOW</span></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <div id="car-item-1">
+                            <div style="font-size: 22px;color: red;margin-bottom: 10px;">THE CHLOE COLLECTION</div>
+                            <div style="font-family: cursive;font-size: 28px;">The Project Jacket</div>
+                            <div style="margin-top: 40px;"><span style="border-bottom: 2px solid red;font-weight: bold;font-size: 14px;">SHOP NOW</span></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <div id="car-item-1">
+                            <div style="font-size: 22px;color: red;margin-bottom: 10px;">THE CHLOE COLLECTION</div>
+                            <div style="font-family: cursive;font-size: 28px;">The Project Jacket</div>
+                            <div style="margin-top: 40px;"><span style="border-bottom: 2px solid red;font-weight: bold;font-size: 14px;">SHOP NOW</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators" style="top: 250px;">
+                    <button class="active" data-bs-slide-to="0" data-bs-target="#banner"></button>
+                    <button data-bs-slide-to="1" data-bs-target="#banner"></button>
+                    <button data-bs-slide-to="2" data-bs-target="#banner"></button>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 80px;margin-left: 300px;margin-right: 200px;">
+            <div class="col p4" style="margin-right: 50px;">
+                <div id="trendings">HOT TREND</div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-ht-1.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Chain Bucket Bag</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-ht-2.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Pendant earrings</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span><span  class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <img src="../public/images/Ashion-ht-3.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Cotton T-shirt</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="margin-right: 50px;">
+                <div id="trendings">BEST SELLER</div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-bs-1.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Cotton T-shirt</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-bs-2.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Zip-pockets pebbled<br> 
+                            tote briefcase</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <img src="../public/images/Ashion-bs-3.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Round leather bag</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="margin-right: 50px;">
+                <div id="trendings">FEATURE</div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-f-1.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column mb-4" style="margin-left: -80px;">
+                        <span>Bow wrap skirt</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <img src="../public/images/Ashion-f-2.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Metallic earrings</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <img src="../public/images/Ashion-f-3.jpg" width="90px" height="90px">
+                    </div>
+                    <div class="col d-flex flex-column" style="margin-left: -80px;">
+                        <span>Flap cross-body bag</span>
+                        <span style="color: gold;font-size: 11px;margin-top: 3px;"><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span></span>
+                        <span style="font-weight: bolder;margin-top: 3px;">$59.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15vh;margin-left: 25vh;margin-right: 25vh;">
+            <div class="col">
+                <img src="../public/images/Ashion-discount.jpg" width="100%">
+            </div>
+            <div class="col d-block" style="background-color: rgb(238, 234, 234);margin-left: -20px;align-content: center;text-align: center;">
+                <span style="font-size: 12px;display: block;font-weight: 500;margin-bottom: 10px;">DISCOUNT</span>
+                <span style="font-size: 30px;font-family: Mistral Regular;display: block;color: rgb(159, 4, 4);font-weight:400;margin-bottom: 15px;">Summer 2025</span>
+                <span style="font-size: 12px;font-weight: 500;margin-bottom: 15px;">SALE <span style="font-size: 16px;font-weight: bold;color: rgb(159, 4, 4);">50%</span></span>
+                <span class="d-block mb-4"><span style="font-size: 28px;font-weight:500;">30 <span style="font-size: 16px;font-weight: unset;">Days&nbsp;&nbsp;</span> </span><span style="font-size: 28px;font-weight:500;">00 <span style="font-size: 16px;font-weight: unset;">Hrs &nbsp;&nbsp;</span> </span><span style="font-size: 28px;font-weight:500;">55 <span style="font-size: 16px;font-weight: unset;">Min &nbsp;&nbsp;</span> </span><span style="font-size: 28px;font-weight:500;">10 <span style="font-size: 16px;font-weight: unset;">Sec</span></span></span>
+                <span style="font-size: 18px;font-family: Calibri;border-bottom: 3px solid rgb(107, 2, 2);font-weight: 900;" id="ShopNow">SHOP NOW</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10vh;margin-left: 120px;margin-right: 120px;">
+            <div class="col d-flex">
+                <div class="bi bi-car-front-fill" style="font-size: 32px;color: orangered;"></div>
+                <div class="col" style="margin-left: 20px;">
+                    <span class="d-block" style="font-weight: 500;">Free Shipping</span>
+                    <span style="color: rgb(141, 140, 140);">For all oder over $99</span>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="bi bi-cash" style="font-size: 36px;color: orangered;"></div>
+                <div class="col" style="margin-left: 20px;">
+                    <span class="d-block" style="font-weight: 500;">Money Back Guarantee</span>
+                    <span style="color: rgb(141, 140, 140);">If good have Problems</span>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="bi bi-life-preserver" style="font-size: 36px;color: orangered;"></div>
+                <div class="col" style="margin-left: 20px;">
+                    <span class="d-block" style="font-weight: 500;">Online Support 24/7</span>
+                    <span style="color: rgb(141, 140, 140);">Dedicated support</span>
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="bi bi-headphones" style="font-size: 36px;color: orangered;"></div>
+                <div class="col" style="margin-left: 20px;">
+                    <span class="d-block" style="font-weight: 500;">Payment Secure</span>
+                    <span style="color: rgb(141, 140, 140);">100% secure payment</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 60px;">
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-1.jpg');">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-2.jpg');">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-3.jpg');">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-4.jpg');">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-5.jpg');">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+            <div class="col insta-img" style="background-repeat: no-repeat;width: 320px;height: 320px;position: relative;background-image: url('../public/images/Ashion-insta-6.jpg');background-size: cover;">
+                <div class="insta-text">
+                    <span class="bi bi-instagram d-block mb-2" style="font-size: 28px;"></span>
+                    <span style="text-align: center;font-size: 20px;">@ashion_shop</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer style="margin-top: 50px; margin-bottom: 50px;">
+        <div class="row" style="margin-left: 100px;margin-right: 100px;">
+            <div class="col">
+                <div style="font-family: Brush Script MT, Brush Script Std, cursive;font-size: 34px;font-weight: bold;">Ashion</div>
+                <div style="color: rgb(76, 75, 75);">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, nostrum sunt! Aut voluptas debitis</div>
+                <div style="margin-top: 20px;">
+                    <span style="border-radius: 20px;background-color: rgb(132, 132, 247);margin-right: 8px;"><a><img src="../public/images/master-card.jpg" width="40px" height="30px"></a></span>
+                    <span style="margin-right: 8px;"><a><img src="../public/images/visa.jpg" width="40px" height="30px" style="border-radius: 40px;"></a></span>
+                    <span style="margin-right: 8px;"><a><img src="../public/images/Ashion-payment-3.png" width="40px" height="30px" style="border-radius: 40px;"></a></span>
+                    <span style="margin-right: 8px;"><a><img src="../public/images/Ashion-payment-4.png" width="40px" height="30px" style="border-radius: 40px;"></a></span>
+                    <span style="margin-right: 8px;"><a><img src="../public/images/Ashion-payment-5.png" width="40px" height="30px" style="border-radius: 40px;"></a></span>
+                </div>
+            </div>
+            <div class="col" style="margin-left: 90px;">
+                <div style="font-weight: 500;margin-bottom: 10px;">QUICK LINKS</div>
+                <div style="display: flex;flex-direction: column;line-height: 30px;color: rgb(76, 75, 75);">
+                    <span>About</span>
+                    <span>Blogs</span>
+                    <span>Contact</span>
+                    <span>FAQ</span>
+                </div>
+            </div>
+            <div class="col" style="margin-left: -40px;">
+                <div style="font-weight: 500;margin-bottom: 10px;">ACCOUNT</div>
+                <div style="display: flex;flex-direction: column;line-height: 30px;color: rgb(76, 75, 75);">
+                    <span>My Account</span>
+                    <span>Orders Tracking</span>
+                    <span>Checkout</span>
+                    <span>Wishlist</span>
+                </div>
+            </div>
+            <div class="col" style="margin-left: -30px;">
+                <div style="font-weight: 500;margin-bottom: 20px;">NEWSLETTER</div>
+                <div class="position-relative">
+                    <input type="text" placeholder="EMAIL" style="height: 52px;width: 100%;border-radius: 50px;padding-left: 30px;border: 1px solid #e1e1e1;"><button style="position: absolute;right: 4px;top: 3px;padding: 12px 30px;color: white;font-size: 14px;border-radius: 50px;background-color: #ca1515;font-weight: 600;border: none;">SUBSCRIBE</button>
+                </div>
+                <div style="margin-top: 50px;">
+                    <span class="bi bi-facebook me-2"></span>
+                    <span class="bi bi-twitter me-2"></span>
+                    <span class="bi bi-youtube me-2"></span>
+                    <span class="bi bi-instagram me-2" id="InstaId"></span>
+                    <span class="bi bi-pinterest me-2"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
